@@ -1,0 +1,74 @@
+﻿@model IEnumerable<EpfTechHub.Models.customer>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+@if (TempData["InFoMessage"] != null)
+{
+    <div class="alert alert-info">
+        <strong>Info ! </strong> @TempData["InFoMessage"]
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span>x</span>
+        </button>
+    </div>
+}
+else if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success">
+        <strong>success ! </strong> @TempData["SuccessMessage"]
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span>x</span>
+        </button>
+    </div>
+}
+else if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger">
+        <strong>Error ! </strong> @TempData["ErrorMessage"]
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span>x</span>
+        </button>
+    </div>
+}
+
+<p>
+    @Html.ActionLink("Create New Customer", "Create", null, new { @class = "btn btn.primary" })
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.firstName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.lastName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DOB)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.firstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.lastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DOB)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            </td>
+        </tr>
+    }
+
+</table>
